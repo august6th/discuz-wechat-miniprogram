@@ -6,7 +6,9 @@
 3. Discuz X3.2
 4. Windows Server 2008
 
-###安装方式
+
+
+### 安装方式
 
 1. 将本仓库下的 wmapi 放到 Discuz 论坛的根目录下 ，访问 https://你的网址/wmapi/wmapi_install.php
 2. 填写你的小程序 appid 以及 appsecret 进行安装（至此，论坛接口已安装完成）
