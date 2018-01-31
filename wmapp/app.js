@@ -142,11 +142,9 @@ App({
     });
   },
 
-  globalData: {
-    // base_url: 'http://lh2.mouldzj.com',
-    // svr_url: 'http://lh2.mouldzj.com/wmapi/',    
-    base_url: 'https://www.mouldbbs.com/',
-    svr_url: 'https://www.mouldbbs.com/wmapi/',
+  globalData: {    
+    base_url: '',
+    svr_url: '',
     
     userInfo: null,
     lite_switch: false,
