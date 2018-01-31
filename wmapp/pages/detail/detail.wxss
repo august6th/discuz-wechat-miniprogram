@@ -1,0 +1,264 @@
+/* detail.wxss */
+@import "/wxParse/wxParse.wxss";
+
+.thread_title-cell {
+  border-radius: 10rpx;
+  margin: 0 0 20rpx 0;
+  padding: 20rpx 30rpx;
+  background-color: white;
+  display: felx;
+  flex: row nowrap;
+}
+
+.thread_data-title {
+  font-size: 36rpx;
+  margin-bottom: 10rpx;
+}
+
+.thread_data-sub {
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.thread_data-info {
+  display: flex;
+  flex-direction: row;
+  color:#c7c7c7;
+}
+
+.thread_data-info .zan-icon{
+  color:#f44444;
+  width: 30rpx;
+}
+
+.thread_data-info view{
+  margin-right:16rpx;
+}
+
+.thread_data-fid {
+  height:30rpx;
+  line-height:30rpx;
+  font-size: 22rpx;
+  border-radius: 5rpx;
+  border: 0.1rpx solid #FF6A6A;
+  color: #FF6A6A;
+  padding: 2px 6rpx;
+  margin-top:5rpx;
+}
+
+.thread_content-cell {
+  padding: 20rpx 30rpx;
+  background-color: white;
+  border-radius: 5rpx;
+}
+
+.new-post{
+  border:2px solid #4b0;
+}
+
+.new-post .article-info .article-author-info {
+  padding:0;
+}
+
+.new-post .article-info .article-author-position{
+  color:#4b0;
+}
+
+ .article-info {
+  padding: 10rpx 0 15rpx 0;
+  margin-bottom: 18rpx;
+  color: gray;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+   border-bottom: 1px solid #efefef 
+}
+
+.article-author {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+
+.article-author-avatar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+
+.article-author-icon {
+  max-width: 68rpx;
+  max-height: 68rpx;   
+  border-radius: 50%;
+}
+
+.article-author-info
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 24rpx;
+  padding-left: 18rpx;
+}
+
+.article-author-position
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 24rpx;
+  padding-left: 10rpx;
+}
+
+
+.thread_image {
+  width: 100%;
+  margin: 10rpx 0;
+}
+
+.resp-head {
+  color:#FF6A6A;
+  margin: 30rpx 0 6rpx 10rpx;
+  font-size:26rpx;
+}
+
+.article {
+  border-radius: 5rpx;
+  margin-bottom: 15rpx;
+  padding: 20rpx 30rpx;
+  position: relative;
+  align-items: center;
+  background-color: white;
+ }
+ 
+.article-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
+}
+
+.article-title {
+  font-size: large;
+ }
+
+.article-sign {
+  display: flex;
+  flex-direction: row;
+  font-size: small;
+}
+
+.article-sign-item {
+  background-color: orange;
+  color: white;
+  padding: 0rpx 5rpx;
+  margin: 0rpx 5rpx;
+}
+
+.article-reader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.article-image {
+    max-width: 150rpx;
+    max-height: 150rpx;   
+}
+
+.comment {
+  padding: 0rpx 30rpx;
+  position: relative;
+  align-items: center;
+  background-color: white;
+}
+
+.comment-item {
+  padding: 20rpx 0rpx;
+  border-top: 1rpx solid #D8D8D8;
+}
+
+.comment-info {
+  color: gray;
+  font-size: small;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.comment-author {
+  display: flex;
+  flex-direction: row;
+}
+
+.comment-op {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.comment-content {
+  margin-left: 80rpx;
+}
+
+.comment-resp {
+  margin-left: 80rpx;
+  padding: 10rpx 10rpx; 
+  background-color: #EEEEEE;
+  /* border-left: 8rpx solid gray; */
+}
+
+.page-tail-space {
+  height: 120rpx;
+  /*background-color: white;*/
+}
+
+.page-tail {
+  left: 0;  
+  position: fixed;  
+  bottom: 0;  
+  width: 100%;  
+  z-index: 100;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resp-input-cell {
+  width: 84%;
+  margin-right: 20rpx;
+}
+
+.resp-input {
+  height: 60rpx;
+  padding-left: 20rpx;
+  margin: 15rpx 0 15rpx 25rpx;
+  /* width: 100%; */
+  border:1px solid #ccc;
+  border-radius: 30rpx;
+}
+
+.resp-btn {
+  height: 60rpx;
+  width: 16%;
+  line-height: 60rpx;
+  text-align: center;
+  margin-right:8rpx;  
+  color: #4b0;
+  font-size: 30rpx;
+}
+
+.need-login {
+  height: 100rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color:#999;
+}

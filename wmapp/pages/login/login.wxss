@@ -1,0 +1,23 @@
+.page-head image{
+  width: 260rpx;
+  height:260rpx;
+}
+
+.image-logo {
+  padding:40rpx 0 0 0;
+}
+
+.weui-label {
+	width: 150rpx;
+}
+
+.weui-cell::before {
+	content:" ";
+	position:absolute;
+	left:0;
+	top:0;
+	right:0;
+	height:1px;
+	border-top:1rpx solid #efefef;
+	color:#efefef;
+}

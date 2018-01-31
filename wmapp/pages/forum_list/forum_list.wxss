@@ -1,0 +1,79 @@
+@import '../index/index.wxss';
+
+.article-info .article-by{
+  color:#c7c7c7;
+  margin-right:20rpx;
+}
+
+.forum{
+  padding: 20rpx;
+  margin-top:20rpx;
+  background-color:#fff;
+}
+
+.forum_info{
+  padding:15rpx 0;
+}
+
+.top_subject{
+    border-top: 1px solid #efefef;
+}
+
+.top_subject_item{
+  font-size: 26rpx;
+  color:#4b0;
+}
+
+.forum_title{
+  font-size:36rpx;
+}
+
+.forum_note{
+  color:#999;
+  font-size:14px;
+}
+
+.top_subject .zan-tag{
+  margin:20rpx 0 10rpx 0;
+}
+
+.top_subject .zan-ellipsis{
+  margin: 8rpx 0;
+}
+
+
+.thread_order{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: white;
+  margin-top: 20rpx;
+}
+
+.thread_order_item{
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  width: 33%;
+  text-align: center;
+}
+
+.thread_order_border{
+  border-bottom: 5rpx solid #179b16;
+}
+
+.edit-cell{
+  z-index: 100;
+  position: fixed;  
+  right: 50rpx;  
+  bottom: 50rpx;  
+  width: 88rpx;
+  height: 88rpx;  
+}
+
+.edit-cell-img {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  opacity: 0.8;
+}

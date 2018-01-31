@@ -1,0 +1,24 @@
+/* user.wxss */
+.page-head-info {
+  padding:50rpx 0 30rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.user-list .navigator {
+  background-color: white;
+  border-radius: 5rpx;
+  margin-bottom: 10rpx;
+  font-size: 28rpx;
+}
+
+.userinfo-avatar {
+  border-radius: 50%;
+  width: 128rpx;
+  height: 128rpx;
+}
+.userinfo-nickname {
+  margin-top: 20rpx;
+  font-size: 38rpx;
+}

@@ -1,0 +1,24 @@
+/* pages/self_post/self_post.wxss */
+@import "/wxParse/wxParse.wxss";
+
+.post_cell {
+	margin: 20rpx 0;
+ 	padding: 20rpx 30rpx;
+ 	align-items: center;
+ 	background-color: white;
+  border-radius: 5rpx;
+}
+
+.post_message {
+  	font-size: 32rpx;
+}
+
+.post_thread {
+	color:#999;
+}
+
+.post_create_time {
+	color:#999;
+  	width: 100%;
+  	font-size: 22rpx;
+}

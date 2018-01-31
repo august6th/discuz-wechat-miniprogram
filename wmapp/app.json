@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/user/user",
+    "pages/detail/detail",
+    "pages/forum/forum",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/forum_list/forum_list",
+    "pages/self_post/self_post",
+    "pages/self_thread/self_thread"
+  ],
+  "window": {
+    "backgroundTextStyle": "#323840",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "中国模具论坛",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#CDC9C9",
+    "selectedColor": "#FF6A6A",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "主页",
+        "iconPath": "resources/image/home_gray.png",
+        "selectedIconPath": "resources/image/home.png"
+      },
+      {
+        "pagePath": "pages/forum/forum",
+        "text": "版块",
+        "iconPath": "resources/image/kind_gray.png",
+        "selectedIconPath": "resources/image/kind.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "resources/image/user_gray.png",
+        "selectedIconPath": "resources/image/user.png"
+      }
+    ]
+  }
+}

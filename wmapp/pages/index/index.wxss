@@ -1,0 +1,139 @@
+/**index.wxss**/
+.article{
+  background-color: #fff;
+  /* padding:20rpx; */
+  padding:10rpx 20rpx;
+  margin:20rpx 0;
+  border-radius: 10rpx;
+  color:#2D2E2F;
+}
+
+.article-header{
+  height: 120rpx;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom:8rpx;
+  /* padding-bottom:6rpx; */
+  border-bottom: 1px solid #efefef;
+}
+
+.article-header .article-author-avatar{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+
+.article-header .article-author-avatar image{
+  /*
+  width: 90rpx;
+  height:90rpx;
+  */
+  width: 78rpx;
+  height: 78rpx;
+  border-radius: 50%;
+   margin-right: 20rpx; 
+}
+
+.article-sub-header{
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.article-sub-header .article-title{
+  color: #444;
+  font-size: 30rpx;
+   font-weight: 600; 
+   display: -webkit-box; 
+   -webkit-box-orient: vertical; 
+   -webkit-line-clamp: 1; 
+   overflow: hidden;
+   margin-bottom: 2rpx;
+}
+
+.article-info{
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.article-info .article-by{
+  color:#c7c7c7;
+  margin-right:10rpx;
+}
+
+.article-info .article-author{
+  color:#666;
+  font-size:26rpx;
+}
+
+.article-info .article-fid-item{
+  font-size:26rpx;
+  color: #FF6A6A;
+}
+
+.article-info .article-in{
+  color:#c7c7c7;
+  margin:0 20rpx;
+}
+
+.article-img{
+    position: relative;
+    width: 100%;
+    height: 200rpx;
+    overflow: hidden;
+    background-position: 50%;
+    background-size: cover;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+.article-img-info{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    overflow: hidden;
+}
+
+.article-img-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    -webkit-transform: translate3d(-50%,-50%,0);
+    transform: translate3d(-50%,-50%,0);
+}
+
+.article-message{
+  padding:16rpx 0;
+  color: #909090;
+  font-size: 30rpx;
+}
+
+.article-ext-info{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  /* margin-top: 10rpx; */
+  color: #c7c7c7; 
+}
+
+.article-ext-info .article-re{
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.article-ext-info .article-re .zan-icon{
+  color:#f44444;
+}
+
+.article-ext-info .article-re view{
+  margin-right:20rpx;
+}

@@ -1,0 +1,39 @@
+/* add_article.wxss */
+
+.group_choose {
+	overflow: hidden; 
+	white-space: nowrap; 
+	text-overflow: ellipsis;
+}
+
+.weui-label {
+	width: 150rpx;
+}
+
+.weui-cell::before {
+	content:" ";
+	position:absolute;
+	left:0;
+	top:0;
+	right:0;
+	height:1px;
+	border-top:1rpx solid #efefef;
+	color:#efefef;
+}
+
+.del-img-btn {
+	z-index:100; 
+	position:absolute;
+	display: inline;
+	right: -10rpx;  
+  top: -10rpx; 
+	width:40rpx;
+	height:40rpx;
+	border-radius: 20rpx;
+	opacity: 0.9;
+}
+
+.image-cell {
+	position:relative;
+	margin-top: 15rpx;
+}
