@@ -2,7 +2,7 @@
 require 'inc.php';
 require_once libfile('function/discuzcode');
 
-//$_POST['tid'] = 171;
+//$_POST['tid'] = 180;
 $token = $_POST['token'];
 $result = WmApiLib::check_token($token);
 
@@ -41,13 +41,17 @@ $sql_limit = ' order by dateline limit ' . ($page_index * $page_size) . ', ' . $
 $resp_data = array();
 $post_list = array();
 $forum_post_data = DB::fetch_all("SELECT * FROM " . DB::table('forum_post') . $sql_where . $sql_limit);
+//dd($forum_post_data);
 foreach ($forum_post_data as &$value) {
     if ($value['attachment'] == 2) {
         $post_image_list = array();
         $forum_attachment = DB::fetch_all("SELECT * FROM " . DB::table('forum_attachment_' . ($value['tid'] % 10)) . " where pid=" . $value['pid']);
         foreach ($forum_attachment as &$image_item) {
-            $image_url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . dirname($_SERVER['PHP_SELF']) . '/get_image.php?file_url=' . $image_item['attachment'];
-            array_push($post_image_list, $image_url);
+            // 判断附件是否为图片
+            if ($image_item['isimage']) {
+                $image_url = '//' . $_SERVER['HTTP_HOST'] . '/' . dirname($_SERVER['PHP_SELF']) . '/get_image.php?file_url=' . $image_item['attachment'];
+                array_push($post_image_list, $image_url);
+            }
         }
         $value['post_image_list'] = array_reverse($post_image_list);
     }
@@ -86,8 +90,12 @@ if ($thread_data['attachment'] == 2) {
     // 获取图片
     $forum_attachment = DB::fetch_all("SELECT * FROM " . DB::table('forum_attachment_' . ($tid % 10)) . " where pid=" . $pid);
     foreach ($forum_attachment as &$image_item) {
-        $image_url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . dirname($_SERVER['PHP_SELF']) . '/get_image.php?file_url=' . $image_item['attachment'];
-        array_push($image_list, $image_url);
+        // 判断附件是否为图片
+        if ($image_item['isimage']) {
+//            dd($image_item['attachment']);
+            $image_url = '//' . $_SERVER['HTTP_HOST'] . '/' . dirname($_SERVER['PHP_SELF']) . '/get_image.php?file_url=' . $image_item['attachment'];
+            array_push($image_list, $image_url);
+        }
     }
     $thread_data['image_list'] = $image_list;
 }

@@ -69,8 +69,10 @@ foreach ($forum_thread_data as &$value) {
     if ($value['attachment'] == 2) {
         $forum_attachment = DB::fetch_all("SELECT * FROM " . DB::table('forum_attachment_' . ($value['tid'] % 10)) . " where pid=" . $pid);
         foreach ($forum_attachment as &$image_item) {
-            $image_url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . dirname($_SERVER['PHP_SELF']) . '/get_image.php?file_url=' . $image_item['attachment'];
-            array_push($image_list, $image_url);
+            if ($image_item['isimage']) {
+                $image_url = '//' . $_SERVER['HTTP_HOST'] . '/' . dirname($_SERVER['PHP_SELF']) . '/get_image.php?file_url=' . $image_item['attachment'];
+                array_push($image_list, $image_url);
+            }
         }
         $value['image_list'] = $image_list;
     }
