@@ -10,7 +10,7 @@ Page({
     loading_hidden: true,
     loading_msg: '加载中...',
     no_data: false,
-    have_data: true,
+    have_data: false,
     nomore_data: false,
     lite_switch: app.globalData.lite_switch,
   },
@@ -148,7 +148,8 @@ Page({
         if (resp_dict.err_code == 0) {
           that.setData({
             articleList: resp_dict.data.forum_thread_data,
-            page_index: page_index
+            page_index: page_index,
+            have_data: true,
           })
         } else {
           getApp().showSvrErrModal(resp);
