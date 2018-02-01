@@ -1,7 +1,6 @@
 <?php
 require 'inc.php';
 require_once libfile('function/discuzcode');
-
 //$_POST['tid'] = 180;
 $token = $_POST['token'];
 $result = WmApiLib::check_token($token);
@@ -49,7 +48,7 @@ foreach ($forum_post_data as &$value) {
         foreach ($forum_attachment as &$image_item) {
             // 判断附件是否为图片
             if ($image_item['isimage']) {
-                $image_url = '//' . $_SERVER['HTTP_HOST'] . '/' . dirname($_SERVER['PHP_SELF']) . '/get_image.php?file_url=' . $image_item['attachment'];
+                $image_url = $http_type . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/get_image.php?file_url=' . $image_item['attachment'];
                 array_push($post_image_list, $image_url);
             }
         }
@@ -93,7 +92,7 @@ if ($thread_data['attachment'] == 2) {
         // 判断附件是否为图片
         if ($image_item['isimage']) {
 //            dd($image_item['attachment']);
-            $image_url = '//' . $_SERVER['HTTP_HOST'] . '/' . dirname($_SERVER['PHP_SELF']) . '/get_image.php?file_url=' . $image_item['attachment'];
+            $image_url = $http_type . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/get_image.php?file_url=' . $image_item['attachment'];
             array_push($image_list, $image_url);
         }
     }

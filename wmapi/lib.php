@@ -111,7 +111,7 @@ class WmApiLib
         if (!file_exists('../uc_server/' . $avatar)) {
             $avatar = 'images/noavatar_middle.gif';
         }
-        $avatar_url = '//' . $_SERVER['HTTP_HOST'] . '/' . dirname($_SERVER['PHP_SELF']) . '/get_image.php?type=avatar&file_url=' . $avatar;
+        $avatar_url = ($_SERVER['HTTPS'] == 'on' ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/get_image.php?type=avatar&file_url=' . $avatar;
         return $avatar_url;
     }
 

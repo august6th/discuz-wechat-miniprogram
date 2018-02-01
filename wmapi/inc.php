@@ -9,6 +9,9 @@ $cachelist = array('plugin', 'setting', 'heats', 'globalstick', 'magic', 'userap
 $discuz->cachelist = $cachelist;
 $discuz->init();
 
+//dd($_SERVER['HTTPS']);
+$http_type = $_SERVER['HTTPS'] == 'on' ? 'https://' : 'http://';
+
 include_once 'wmapi_config.php';
 include_once 'error.php';
 include_once 'lib.php';
