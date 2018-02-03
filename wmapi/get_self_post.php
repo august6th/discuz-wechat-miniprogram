@@ -11,7 +11,20 @@ if ($result['uid'] == 0) {
 }
 $uid = $result['uid'];
 
-$sql_where = ' where invisible>=0 and first=0 and authorid=' . $uid;
+$viewperms = C::t('forum_forumfield')->fetch_all_field_perm();
+$unselect_forum = array();
+foreach ($viewperms as $viewperm) {
+	if ($viewperm['viewperm']) {
+		array_push($unselect_forum, $viewperm['fid']);
+	}
+}
+
+if (!empty($unselect_forum)) {
+	$sql_not_in = " and fid not in ('" . implode("','", $unselect_forum) . "')"; 
+	$sql_where = ' where invisible>=0 and first=0 and authorid=' . $uid . $sql_not_in;
+} else {
+	$sql_where = ' where invisible>=0 and first=0 and authorid=' . $uid;
+}
 
 $page_size = $_POST['page_size'];
 if (!empty($page_size)) {
@@ -42,18 +55,14 @@ $forum_post_data = DB::fetch_all("SELECT * FROM " . DB::table('forum_post') . $s
 
 foreach ($forum_post_data as $key => &$value) {
 
-    $thread_data = DB::fetch_first("SELECT * FROM " . DB::table('forum_thread') . " where tid=" . $value['tid']);
-    if ($thread_data['closed']) {
-        unset($forum_post_data[$key]);
-    } else {
-        // 修改字段
+    $thread_data = DB::fetch_first("SELECT * FROM " . DB::table('forum_thread') . " where closed = 0 and tid=" . $value['tid']);
+		// 修改字段
 //    dd($value);
 //    dd($thread_data['tid']);
 //    dd($value);
         $value['create_time'] = date('Y-m-d', $value['dateline']);
         $value['thread_subject'] = $thread_data['subject'];
         $value['message'] = discuzcode($value['message'], 0, 0, 0, 1, 1, 0, 0, 0, 0, 0);
-    }
 }
 //dd($forum_post_data);
 

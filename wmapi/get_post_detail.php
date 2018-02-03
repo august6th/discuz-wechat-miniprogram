@@ -1,7 +1,9 @@
 <?php
 require 'inc.php';
 require_once libfile('function/discuzcode');
-//$_POST['tid'] = 180;
+require_once libfile('function/post');
+
+// $_POST['tid'] = 46;
 $token = $_POST['token'];
 $result = WmApiLib::check_token($token);
 
@@ -41,6 +43,7 @@ $resp_data = array();
 $post_list = array();
 $forum_post_data = DB::fetch_all("SELECT * FROM " . DB::table('forum_post') . $sql_where . $sql_limit);
 //dd($forum_post_data);
+
 foreach ($forum_post_data as &$value) {
     if ($value['attachment'] == 2) {
         $post_image_list = array();
@@ -58,7 +61,7 @@ foreach ($forum_post_data as &$value) {
     $value['create_time'] = date('Y-m-d', $value['dateline']);
     $value['author_avatar'] = WmApiLib::get_user_avatar($value['authorid']);
     if ($value['first'] != 1) {
-        $value['message'] = discuzcode($value['message'], 0, 0, 0, 1, 1, 0, 0, 0, 0, 0);
+        $value['message'] = discuzcode(messagecutstr($value['message']), 0, 0, 0, 1, 1, 0, 0, 0, 0, 0);
 //        dd($value);
         array_push($post_list, $value);
     }
@@ -75,7 +78,7 @@ $first_post_data = DB::fetch_first("SELECT * FROM " . DB::table('forum_post') . 
 $pid = $first_post_data['pid'];
 
 #$thread_data['message'] = $first_post_data['message'];
-$thread_data['message'] = discuzcode($first_post_data['message'], 0, 0, 0, 1, 1, 0, 0, 0, 0, 0);
+$thread_data['message'] = discuzcode(messagecutstr($first_post_data['message']), 0, 0, 0, 1, 1, 0, 0, 0, 0, 0);
 
 
 // 获取版块
@@ -86,6 +89,7 @@ if ($forum_forum_data) {
 
 if ($thread_data['attachment'] == 2) {
     $image_list = array();
+	$un_image_attach = 0;
     // 获取图片
     $forum_attachment = DB::fetch_all("SELECT * FROM " . DB::table('forum_attachment_' . ($tid % 10)) . " where pid=" . $pid);
     foreach ($forum_attachment as &$image_item) {
@@ -94,8 +98,11 @@ if ($thread_data['attachment'] == 2) {
 //            dd($image_item['attachment']);
             $image_url = $http_type . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/get_image.php?file_url=' . $image_item['attachment'];
             array_push($image_list, $image_url);
-        }
+        } else {
+			$un_image_attach++;
+		}
     }
+	$thread_data['un_image_attach'] = $un_image_attach;
     $thread_data['image_list'] = $image_list;
 }
 

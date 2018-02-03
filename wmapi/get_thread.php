@@ -1,12 +1,28 @@
 <?php
 require 'inc.php';
-require '../source/function/function_post.php';
+require_once libfile('function/post');
 
 $token = $_POST['token'];
 
 $result = WmApiLib::check_token($token);
 
-$sql_where = ' where displayorder>=0 and closed = 0 ';
+// 过滤有权限的板块
+
+$viewperms = C::t('forum_forumfield')->fetch_all_field_perm();
+$unselect_forum = array();
+foreach ($viewperms as $viewperm) {
+	if ($viewperm['viewperm']) {
+		array_push($unselect_forum, $viewperm['fid']);
+	}
+}
+
+if (!empty($unselect_forum)) {
+	$sql_not_in = "and fid not in ('" . implode("','", $unselect_forum) . "')"; 
+	$sql_where = ' where displayorder>=0 and closed = 0 ' . $sql_not_in;
+} else {
+	$sql_where = ' where displayorder>=0 and closed = 0 ';
+}
+
 
 $fid = $_POST['fid'];
 if (!empty($fid)) {
@@ -58,6 +74,7 @@ $sql_limit = ' order by ' . $order_field . ' desc limit ' . ($page_index * $page
 $resp_data = array();
 
 $forum_thread_data = DB::fetch_all("SELECT * FROM " . DB::table('forum_thread') . $sql_where . $sql_limit);
+
 
 foreach ($forum_thread_data as &$value) {
     $forum_post_data = DB::fetch_first("SELECT * FROM " . DB::table('forum_post') . " where first=1 and tid=" . $value['tid']);
