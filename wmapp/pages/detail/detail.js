@@ -7,6 +7,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    thread_data: {
+      un_image_attach: 0,
+      price: 0
+    },
     imageList: [],
     newpost:  false,
     username: '',
