@@ -60,5 +60,10 @@
     <template is="zan-loadmore" data="{{ nodata: no_data }}"></template>
     <!-- 没有更多的数据了 -->
     <template is="zan-loadmore" data="{{ nomore :nomore_data}}"></template>
+    <block wx:if="{{scroll_show}}">
+    <view class="scroll-to-top" bindtap="scrollToTop">
+      <image class="scroll-to-top-img" src="../../resources/image/top.png"/>
+    </view>
+    </block>
   </view>
 </view>

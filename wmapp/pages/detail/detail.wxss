@@ -55,7 +55,7 @@
 }
 
 .new-post{
-  border:2px solid #FF6A6A;
+  border:2px solid #4b0;
 }
 
 .new-post .article-info .article-author-info {
@@ -63,7 +63,7 @@
 }
 
 .new-post .article-info .article-author-position{
-  color:#FF6A6A;
+  color:#4b0;
 }
 
  .article-info {
@@ -263,18 +263,19 @@
   color:#999;
 }
 
-.un-image-attach {
-  padding:10rpx 20rpx;
-  background:white;
-  margin-top:20rpx;
-  border-radius:5rpx;
-  border:2px solid #FF6A6A;
+.scroll-to-top {
+  z-index: 100;
+  position: fixed;  
+  right: 20rpx;  
+  bottom: 100rpx;
+  width: 120rpx;
+  height: 120rpx;
 }
 
-.un-image-attach .attach-alert, .un-image-attach .to-mould text {
-  color: #FF6A6A;
-}
-
-.un-image-attach .to-mould {
-  color:#868686;
+.scroll-to-top-img {
+  background-color: #FF6A6A;
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  opacity: 0.9;
 }

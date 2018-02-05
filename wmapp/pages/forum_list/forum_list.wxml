@@ -85,5 +85,10 @@
       <image class="edit-cell-img" src="../../resources/image/edit.png"/>
     </view>
     -->
+    <block wx:if="{{scroll_show}}">
+    <view class="scroll-to-top" bindtap="scrollToTop">
+      <image class="scroll-to-top-img" src="../../resources/image/top.png"/>
+    </view>
+    </block>
   </view>
 </view>
