@@ -61,7 +61,7 @@ foreach ($forum_post_data as &$value) {
     $value['create_time'] = date('Y-m-d', $value['dateline']);
     $value['author_avatar'] = WmApiLib::get_user_avatar($value['authorid']);
     if ($value['first'] != 1) {
-        $value['message'] = discuzcode(messagesafeclear($value['message']), 0, 0, 0, 1, 1, 0, 0, 0, 0, 0);
+        $value['message'] = discuzcode(mini_pro_messagesafeclear($value['message']), 0, 0, 0, 1, 1, 0, 0, 0, 0, 0);
 //        dd($value);
         array_push($post_list, $value);
     }
@@ -79,7 +79,7 @@ $pid = $first_post_data['pid'];
 
 // $thread_data['message'] = $first_post_data['message'];
 if (!$thread_data['price']) {
-	$thread_data['message'] = discuzcode(messagesafeclear($first_post_data['message']), 0, 0, 0, 1, 1, 0, 0, 0, 0, 0);
+	$thread_data['message'] = discuzcode(mini_pro_messagesafeclear($first_post_data['message']), 0, 0, 0, 1, 1, 0, 0, 0, 0, 0);
 } else {
 	$thread_data['message'] = diconv('***付费帖内容隐藏***', 'UTF-8');
 }
