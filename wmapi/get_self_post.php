@@ -1,6 +1,7 @@
 <?php
 require 'inc.php';
 require_once libfile('function/discuzcode');
+require_once libfile('function/post');
 
 $token = $_POST['token'];
 $result = WmApiLib::check_token($token);
@@ -62,7 +63,7 @@ foreach ($forum_post_data as $key => &$value) {
 //    dd($value);
         $value['create_time'] = date('Y-m-d', $value['dateline']);
         $value['thread_subject'] = $thread_data['subject'];
-        $value['message'] = discuzcode($value['message'], 0, 0, 0, 1, 1, 0, 0, 0, 0, 0);
+        $value['message'] = discuzcode(messagesafeclear($value['message']), 0, 0, 0, 1, 1, 0, 0, 0, 0, 0);
 }
 //dd($forum_post_data);
 

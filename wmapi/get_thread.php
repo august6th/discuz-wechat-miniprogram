@@ -80,7 +80,11 @@ foreach ($forum_thread_data as &$value) {
     $forum_post_data = DB::fetch_first("SELECT * FROM " . DB::table('forum_post') . " where first=1 and tid=" . $value['tid']);
     $pid = $forum_post_data['pid'];
     $value['avatar'] = WmApiLib::get_user_avatar($value['authorid']);
-    $value['message'] = messagecutstr(preg_replace('/\s+/', '', $forum_post_data['message']), 100);
+	if (!$value['price']) {
+		$value['message'] = messagecutstr(preg_replace('/\s+/', '', $forum_post_data['message']), 100);
+	} else {
+		$value['message'] = diconv('***付费帖内容隐藏***', 'UTF-8');
+	}
     $image_list = array();
     // 获取图片
     if ($value['attachment'] == 2) {

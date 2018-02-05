@@ -6,6 +6,23 @@
   </loading>
   <view class="page-body">
     <view class="page__bd">
+      <view class="thread_title-cell">
+        <view class="thread_data-title">{{thread_data.subject}}</view>
+        <view class="thread_data-sub">
+          <view class="thread_data-info">
+              <view class="zan-icon zan-icon-password-view"></view> 
+              <view>{{thread_data.views}}</view>
+              <view class="zan-icon zan-icon-chat"></view>
+              <view>{{thread_data.replies}}</view>
+          </view>
+          <block wx:if="{{thread_data.fid_name}}">
+            <view class="thread_data-fid">{{thread_data.fid_name}}</view>
+          </block>
+          <block wx:else>
+            <view class="thread_data-fid">群组</view>
+          </block>
+        </view>
+      </view>
       <view>
           <block wx:if="{{newpost}}">
           <view class="article new-post">
@@ -24,24 +41,6 @@
           </view>
         </block>
       </view>
-      <view class="thread_title-cell">
-        <view class="thread_data-title">{{thread_data.subject}}</view>
-        <view class="thread_data-sub">
-          <view class="thread_data-info">
-              <view class="zan-icon zan-icon-password-view"></view> 
-              <view>{{thread_data.views}}</view>
-              <view class="zan-icon zan-icon-chat"></view>
-              <view>{{thread_data.replies}}</view>
-          </view>
-          <block wx:if="{{thread_data.fid_name}}">
-            <view class="thread_data-fid">{{thread_data.fid_name}}</view>
-          </block>
-          <block wx:else>
-            <view class="thread_data-fid">群组</view>
-          </block>
-        </view>
-      </view>
-
       <view class="thread_content-cell">
         <view class="article-info">
           <view class="article-author">
@@ -71,7 +70,17 @@
           </block>
         </view>
       </view>
-
+      <block wx:if="{{thread_data.un_image_attach || thread_data.price != 0}}">
+      <view class="extend-notice">
+        <block wx:if="{{thread_data.un_image_attach}}">
+        <view class="alert">本帖有 {{thread_data.un_image_attach}} 个附件可供下载</view>
+        </block>
+        <block wx:if="{{thread_data.price != 0}}">
+        <view class="alert">本帖售价为 {{thread_data.price}} 模币</view>
+        </block>
+        <view class="to-mould">请移步至<text>中国模具论坛</text>官网，进行查看。</view>
+      </view>
+      </block>
       <view>
         <view class="resp-head">全部回复（{{thread_data.replies}}）</view>
         <block wx:for="{{articleList}}" wx:for-index="articleIndex" wx:for-item="article" wx:key="articleId">

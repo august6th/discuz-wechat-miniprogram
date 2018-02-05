@@ -3,7 +3,7 @@ require 'inc.php';
 require_once libfile('function/discuzcode');
 require_once libfile('function/post');
 
-// $_POST['tid'] = 46;
+//$_POST['tid'] = 51;
 $token = $_POST['token'];
 $result = WmApiLib::check_token($token);
 
@@ -55,13 +55,13 @@ foreach ($forum_post_data as &$value) {
                 array_push($post_image_list, $image_url);
             }
         }
-        $value['post_image_list'] = array_reverse($post_image_list);
+        $value['post_image_list'] = $post_image_list;
     }
     // 修改字段
     $value['create_time'] = date('Y-m-d', $value['dateline']);
     $value['author_avatar'] = WmApiLib::get_user_avatar($value['authorid']);
     if ($value['first'] != 1) {
-        $value['message'] = discuzcode(messagecutstr($value['message']), 0, 0, 0, 1, 1, 0, 0, 0, 0, 0);
+        $value['message'] = discuzcode(messagesafeclear($value['message']), 0, 0, 0, 1, 1, 0, 0, 0, 0, 0);
 //        dd($value);
         array_push($post_list, $value);
     }
@@ -77,8 +77,12 @@ $thread_data['author_avatar'] = WmApiLib::get_user_avatar($thread_data['authorid
 $first_post_data = DB::fetch_first("SELECT * FROM " . DB::table('forum_post') . " where first=1 and tid=" . $tid);
 $pid = $first_post_data['pid'];
 
-#$thread_data['message'] = $first_post_data['message'];
-$thread_data['message'] = discuzcode(messagecutstr($first_post_data['message']), 0, 0, 0, 1, 1, 0, 0, 0, 0, 0);
+// $thread_data['message'] = $first_post_data['message'];
+if (!$thread_data['price']) {
+	$thread_data['message'] = discuzcode(messagesafeclear($first_post_data['message']), 0, 0, 0, 1, 1, 0, 0, 0, 0, 0);
+} else {
+	$thread_data['message'] = diconv('***付费帖内容隐藏***', 'UTF-8');
+}
 
 
 // 获取版块

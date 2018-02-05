@@ -1,5 +1,7 @@
 <?php
 require 'inc.php';
+require_once libfile('function/discuzcode');
+
 
 $token = $_POST['token'];
 $result = WmApiLib::check_token($token);
@@ -55,6 +57,7 @@ foreach ($forum_thread_data as &$value)
 
 	$image_list = array();
 	// 获取图片
+	/*
     if ($value['attachment'] == 2) {
         $forum_attachment = DB::fetch_all("SELECT * FROM ".DB::table('forum_attachment_'.($value['tid']%10))." where pid=".$pid);
 		foreach ($forum_attachment as &$image_item) 
@@ -64,6 +67,7 @@ foreach ($forum_thread_data as &$value)
 		}
 		$value['image_list'] = $image_list;
     }
+	*/
 
 	// 获取版块
 	$forum_forum_data = DB::fetch_first("SELECT * FROM ".DB::table('forum_forum')." WHERE status=1 and fid=".$value['fid']);

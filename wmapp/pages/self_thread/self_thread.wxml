@@ -14,7 +14,7 @@
                     <view class="article-title">{{article.subject}}</view>
                   </view>
                   <view class="article-info">
-                    <view class="article-author">{{article.author}}</view>   
+                     <view class="article-author">{{article.author}}</view>    
                     <view class="article-in">in</view>
                     <view class="article-fid-item">{{article.fid_name}}</view>
                   </view>

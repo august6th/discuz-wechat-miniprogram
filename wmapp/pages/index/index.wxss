@@ -20,9 +20,10 @@
 }
 
 .article-header .article-author-avatar{
+  width:15%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-content: center;
 }
 
@@ -37,6 +38,10 @@
    margin-right: 20rpx; 
 }
 
+.article-side-header {
+  width:85%;
+}
+
 .article-sub-header{
   display: flex;
   flex-flow: row nowrap;
@@ -46,12 +51,11 @@
 .article-sub-header .article-title{
   color: #444;
   font-size: 30rpx;
-   font-weight: 600; 
-   display: -webkit-box; 
-   -webkit-box-orient: vertical; 
-   -webkit-line-clamp: 1; 
-   overflow: hidden;
-   margin-bottom: 2rpx;
+  font-weight: 600; 
+  display: -webkit-box; 
+  -webkit-box-orient: vertical; 
+  -webkit-line-clamp: 1; 
+  overflow: hidden;
 }
 
 .article-info{

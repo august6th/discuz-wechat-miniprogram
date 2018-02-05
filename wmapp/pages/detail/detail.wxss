@@ -55,7 +55,7 @@
 }
 
 .new-post{
-  border:2px solid #4b0;
+  border:2px solid #FF6A6A;
 }
 
 .new-post .article-info .article-author-info {
@@ -63,7 +63,7 @@
 }
 
 .new-post .article-info .article-author-position{
-  color:#4b0;
+  color:#FF6A6A;
 }
 
  .article-info {
@@ -123,7 +123,7 @@
 
 .resp-head {
   color:#FF6A6A;
-  margin: 30rpx 0 6rpx 10rpx;
+  margin: 20rpx 0 6rpx 10rpx;
   font-size:26rpx;
 }
 
@@ -279,3 +279,15 @@
   border-radius: 50%;
   opacity: 0.9;
 }
+
+.extend-notice {
+   padding:10rpx 20rpx;
+   background:white;
+   margin:20rpx 0;
+   border-radius:5rpx;
+   border:2px solid #FF6A6A;
+ }
+ 
+ .extend-notice .alert, .extend-notice .to-mould text {
+   color: #FF6A6A;
+ }
