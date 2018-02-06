@@ -18,66 +18,90 @@ Page({
 
   onLoad: function () {
     var that = this;
-    var token = wx.getStorageSync("token");
-    if (token == null || token == undefined || token == '') {
-      wx.login({
-        success: function (res) {
-          if (res.code) {
-            //console.log(res);
-            that.setData({
-              loading_hidden: false,
-              loading_msg: '加载中...'
-            })
-            wx.request({
-              url: getApp().globalData.svr_url+'get_token.php',
-              method: 'POST',
-              header: { "content-type": "application/x-www-form-urlencoded" },
-              data: {
-                token: token,
-                code: res.code,
-              },
-              success: function(resp) {
-                console.log(resp);
-                var resp_dict = resp.data;
-                if (resp_dict.err_code == 0) {
-                  wx.setStorage({
-                    key: 'token',
-                    data: resp.data.data.token,
-                    success: function(){
+    wx.checkSession({
+      success: function () {
+        console.log('check success');
+        var token = app.getSt("token", '');
+        console.log(token);
+        if (token == null || token == undefined || token == '') {
+          wx.login({
+            success: function (res) {
+              if (res.code) {
+                //console.log(res);
+                wx.request({
+                  url: getApp().globalData.svr_url + 'get_token.php',
+                  method: 'POST',
+                  header: { "content-type": "application/x-www-form-urlencoded" },
+                  data: {
+                    code: res.code,
+                  },
+                  success: function (resp) {
+                    console.log(resp);
+                    var resp_dict = resp.data;
+                    if (resp_dict.err_code == 0) {
+                      console.log('Set token...');
+                      app.putSt('token', resp.data.data.token, 7100);
                       that.reloadIndex();
+                    } else {
+                      getApp().showSvrErrModal(resp);
                     }
-                  });
-                } else {
-                  getApp().showSvrErrModal(resp);
-                }
-                that.setData({
-                  loading_hidden: true,
-                  loading_msg: '加载中...'
+                  }
                 })
+              } else {
+                console.log('获取用户登录态失败！' + res.errMsg)
               }
-            })
-          } else {
-            console.log('获取用户登录态失败！' + res.errMsg)
-          }
+            }
+          });
+        } else {
+          that.reloadIndex();
         }
-      });
-    } else {
-      this.reloadIndex();
-    }
+      },
+      fail: function () {
+        console.log('check fail');
+        wx.login({
+          success: function (res) {
+            if (res.code) {
+              //console.log(res);
+              wx.request({
+                url: getApp().globalData.svr_url + 'get_token.php',
+                method: 'POST',
+                header: { "content-type": "application/x-www-form-urlencoded" },
+                data: {
+                  code: res.code,
+                },
+                success: function (resp) {
+                  console.log(resp);
+                  var resp_dict = resp.data;
+                  if (resp_dict.err_code == 0) {
+                    console.log('Set token...');
+                    app.putSt('token', resp.data.data.token, 7100);
+                    that.reloadIndex();
+                  } else {
+                    getApp().showSvrErrModal(resp);
+                  }
+                }
+              })
+            } else {
+              console.log('获取用户登录态失败！' + res.errMsg)
+            }
+          }
+        });
+      }
+    })
   },
 
   toDetail: function (e) {
     console.log(e);
     var tid = e.currentTarget.dataset.tid;
     wx.navigateTo({
-      url: '../detail/detail?tid='+tid,
+      url: '../detail/detail?tid=' + tid,
     })
   },
 
-  onReachBottom: function() {
+  onReachBottom: function () {
     var that = this;
     var page_size = that.data.page_size;
-    var page_index = that.data.page_index+1;
+    var page_index = that.data.page_index + 1;
     wx.request({
       url: getApp().globalData.svr_url + "get_thread.php",
       method: "post",
@@ -100,7 +124,7 @@ Page({
             for (var j = 0; j < tmpArticleList.length; ++j) {
               if (respArticleList[i].tid == tmpArticleList[j].tid) {
                 has_in = 1;
-              } 
+              }
             }
             if (has_in == 0) {
               tmpArticleList.push(respArticleList[i]);
@@ -128,11 +152,15 @@ Page({
     })
   },
 
-  reloadIndex: function() {
+  reloadIndex: function () {
     var that = this;
-    var tmpArticleList = [];  
+    var tmpArticleList = [];
     var page_size = that.data.page_size;
     var page_index = 0;
+    this.setData({
+      loading_hidden: false,
+      loading_msg: '加载中...'
+    });
     wx.request({
       url: getApp().globalData.svr_url + "get_thread.php",
       method: "post",
@@ -151,6 +179,8 @@ Page({
             articleList: resp_dict.data.forum_thread_data,
             page_index: page_index,
             have_data: true,
+            loading_hidden: true,
+            loading_msg: '加载完毕...'
           })
         } else {
           getApp().showSvrErrModal(resp);
@@ -159,17 +189,17 @@ Page({
     })
   },
 
-  onShow: function() {
+  onShow: function () {
     if (wx.getStorageSync("reload_index") == 1) {
       this.reloadIndex();
       wx.setStorage({
         key: 'reload_index',
         data: 0,
       })
-    }  
+    }
   },
-  
-  onPullDownRefresh: function() {
+
+  onPullDownRefresh: function () {
     console.log('onPullDownRefresh');
     this.reloadIndex();
     wx.stopPullDownRefresh();
@@ -179,12 +209,12 @@ Page({
     return {
       title: "",
       path: '/pages/index/index',
-      success: function(res) {
+      success: function (res) {
         console.log(res);
       },
     }
   },
-  onPageScroll:function(e) {
+  onPageScroll: function (e) {
     if (e.scrollTop >= 600) {
       this.setData({
         scroll_show: true
@@ -195,7 +225,7 @@ Page({
       })
     }
   },
-  scrollToTop:function () {
+  scrollToTop: function () {
     if (wx.pageScrollTo) {
       wx.pageScrollTo({
         scrollTop: 0,
