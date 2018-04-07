@@ -325,6 +325,12 @@ Page({
     })
   },
 
+  toIndex: function () {
+    wx.switchTab({
+      url: '../index/index',
+    })
+  },
+  
   onShareAppMessage: function (res) {
     return {
       title: "",

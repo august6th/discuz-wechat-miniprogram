@@ -1,9 +1,51 @@
 /* detail.wxss */
 @import "/wxParse/wxParse.wxss";
 
+.header-fix {
+  position: fixed;
+  height: 80rpx;
+  background: #fbfbfb;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  z-index: 100;
+  border-bottom: 1rpx solid #dfdfdf;
+}
+
+.header-fix .fix-btn{
+  display: flex;
+  height: 100%;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  letter-spacing: 6rpx;
+  color: #444;
+}
+
+.header-fix .share-btn {
+  font-size: 28rpx;
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+  border-radius: 0;
+  color: #444;
+  background: #fbfbfb;
+}
+
+.header-fix .share-btn::after{
+  content: none;
+}
+
+.detail-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 15rpx;
+}
+
 .thread_title-cell {
   border-radius: 10rpx;
-  margin: 0 0 20rpx 0;
+  margin: 80rpx 0 20rpx 0;
   padding: 20rpx 30rpx;
   background-color: white;
   display: felx;
@@ -212,7 +254,7 @@
 }
 
 .page-tail-space {
-  height: 120rpx;
+  height: 110rpx;
   /*background-color: white;*/
 }
 
@@ -227,6 +269,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  border-top: 1rpx solid #dfdfdf;
 }
 
 .resp-input-cell {
@@ -254,7 +297,7 @@
 }
 
 .need-login {
-  height: 100rpx;
+  height: 90rpx;
   width: 100%;
   display: flex;
   flex-direction: row;

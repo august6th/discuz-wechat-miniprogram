@@ -1,9 +1,16 @@
 <!--detail.wxml-->
 <import src="/wxParse/wxParse.wxml"/>
+<view class="header-fix">
+  <view class="fix-btn" bindtap='toIndex'><image class="detail-icon" src='/resources/icon/index.png' />首页</view>
+  <button class="fix-btn share-btn" open-type='share'>
+  <image class="detail-icon" src='/resources/icon/share.png' />分享
+  </button>
+</view>
 <view class="container">
   <loading hidden="{{loading_hidden}}">
     {{loading_msg}}
   </loading>
+
   <view class="page-body">
     <view class="page__bd">
       <view class="thread_title-cell">
