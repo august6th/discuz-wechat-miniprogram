@@ -18,7 +18,7 @@
 
 4. 修改 app.js 下的 base_url 以及 svr_url 为你的网址
 
-   base_url: 'https://xxxx.com/'
+   base_url: 'https://www.xxxx.com/'
 
    svr_url: 'https://www.xxxx.com/wmapi/'
 
