@@ -32,4 +32,4 @@
 
 如有任何侵权行为，请联系我。
 
-QQ : 484299394
+email：heng8050lee@gmail.com
